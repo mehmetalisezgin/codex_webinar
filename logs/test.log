@@ -1,0 +1,15 @@
+2025-07-30 22:48:50,766 DEBUG [SETUP TEST] tests.UI.EconomicCalendarTests
+2025-07-30 22:48:50,773 DEBUG setUpDriver(Browser: firefox, Remote: false, Headless: false)
+2025-07-30 22:49:01,058 DEBUG isExpectedTitleDisplayed()
+2025-07-30 22:49:01,059 DEBUG getPageTitle()
+2025-07-30 22:49:01,064 DEBUG verifyHomePage()
+2025-07-30 22:49:05,640 DEBUG verifyEconomicCalendarPage()
+2025-07-30 22:49:11,485 DEBUG [END TEST] tests.UI.EconomicCalendarTests
+2025-07-30 22:49:11,496 ERROR Exception occurred in tearDown(tests.UI.EconomicCalendarTests)! Message: SecurityError: Permission denied to access property "pageXOffset" on cross-origin object
+Build info: version: '4.26.0', revision: '8ccf0219d7'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.14'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Command: [3fb9e792-7b0d-489c-b5a0-e7654a9050cb, screenshot {}]
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 141.0, moz:accessibilityChecks: false, moz:buildID: 20250717180000, moz:geckodriverVersion: 0.36.0, moz:headless: false, moz:platformVersion: 10.0, moz:processID: 13432, moz:profile: C:\Users\msezgin\AppData\Lo..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, userAgent: Mozilla/5.0 (Windows NT 10....}
+Session ID: 3fb9e792-7b0d-489c-b5a0-e7654a9050cb
+2025-07-30 22:49:11,497 DEBUG quitDriver()
