@@ -7,7 +7,6 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.CommonPageClass;
 import pages.HomePage;
 import pages.LiveEducationPage;
 import org.testng.Assert;
@@ -20,23 +19,15 @@ public class LiveEducationTest extends BaseTestClass {
     private WebDriver driver;
     private final String sTestName = this.getClass().getName();
     private boolean bCreated = false;
-    HomePage homePage = new HomePage(driver);
-    LiveEducationPage liveEducationPage = new LiveEducationPage(driver);
+    HomePage homePage;
+    LiveEducationPage liveEducationPage;
     JavaScriptUtils javaScriptUtils = new JavaScriptUtils();
 
     @BeforeMethod
     public void setUp(ITestContext testContext) {
-        LoggerUtils.log.debug("[SETUP TEST] " + sTestName);
-        driver = setUpMaxResolution();
-        testContext.setAttribute(sTestName + ".drivers", new WebDriver[]{driver});
-        CommonPageClass commonPageClass = new CommonPageClass(driver);
-        commonPageClass.isExpectedTitleDisplayed("Access Global Financial Markets and Start Trading | XM");
-        homePage.verifyHomePage();
-        DateTimeUtils.wait(Time.TIME_DEMONSTRATION);
-        homePage.clickAcceptCookies();
-        DateTimeUtils.wait(Time.TIME_DEMONSTRATION);
-        homePage.clickDiscoverMenu();
-        DateTimeUtils.wait(Time.TIME_DEMONSTRATION);
+        driver = prepareHomePage(testContext, sTestName);
+        homePage = new HomePage(driver);
+        liveEducationPage = new LiveEducationPage(driver);
         homePage.clickLiveEducation();
         DateTimeUtils.wait(Time.TIME_DEMONSTRATION);
         liveEducationPage.verifyLiveEducationPage();

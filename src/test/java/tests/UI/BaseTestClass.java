@@ -1,7 +1,11 @@
 package tests.UI;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestContext;
 import org.testng.ITestResult;
+import pages.CommonPageClass;
+import pages.HomePage;
+import data.Time;
 import utils.*;
 
 public abstract class BaseTestClass {
@@ -30,6 +34,23 @@ public abstract class BaseTestClass {
     }
     protected WebDriver setUp800x600Resolution() {
         return setUpDriverWithResolution("screen.resolution.small");
+    }
+
+    protected WebDriver prepareHomePage(ITestContext testContext, String testName) {
+        LoggerUtils.log.debug("[SETUP TEST] " + testName);
+        WebDriver driver = setUpMaxResolution();
+        testContext.setAttribute(testName + ".drivers", new WebDriver[]{driver});
+
+        HomePage homePage = new HomePage(driver);
+        CommonPageClass commonPageClass = new CommonPageClass(driver);
+        commonPageClass.isExpectedTitleDisplayed("Access Global Financial Markets and Start Trading | XM");
+        homePage.verifyHomePage();
+        DateTimeUtils.wait(Time.TIME_DEMONSTRATION);
+        homePage.clickAcceptCookies();
+        DateTimeUtils.wait(Time.TIME_DEMONSTRATION);
+        homePage.clickDiscoverMenu();
+        DateTimeUtils.wait(Time.TIME_DEMONSTRATION);
+        return driver;
     }
 
     protected void quitDriver(WebDriver driver) {
