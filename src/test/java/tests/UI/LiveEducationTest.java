@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import pages.CommonPageClass;
 import pages.HomePage;
 import pages.LiveEducationPage;
+import org.testng.Assert;
 import utils.DateTimeUtils;
 import utils.JavaScriptUtils;
 import utils.LoggerUtils;
@@ -50,37 +51,12 @@ public class LiveEducationTest extends BaseTestClass {
 
 
     @Test
-    public void test01() {
-        // On the Live Education Page
-        // No visible play button.
-        // No time indicator.
-        // No standard video controls (like play/pause or timeline).
-        // UI suggests it's scheduled for a future date (April 7 at 08:00 AM)
-        // Below it says: "Every weekday at 8:00 AM" → Could mean live-only event.
-
-       /*
-       {
-    "id": 19664174,
-    "metering": {
-        "seconds_remaining": 43200,
-        "seconds_max": 43200
-    },
-    "ingest": {
-        "rtmps_url": "rtmps:\/\/rtmp-global.cloud.vimeo.com:443\/live",
-        "height": null,
-        "width": null,
-        "status": 0,
-        "session_id": null,
-        "stream_ended_reason": null,
-        "start_time": null,
-        "scheduled_start_time": "2025-04-07T06:00:00+00:00"
-    },
-    "archive": {
-        "status": 0
-    }
-}
-        */
-
+    public void verifyScheduleTextIsVisible() {
+        String expectedText = "Every weekday at 8:00 AM";
+        DateTimeUtils.wait(Time.TIME_DEMONSTRATION);
+        boolean isDisplayed = liveEducationPage.isTextVisible(expectedText);
+        Assert.assertTrue(isDisplayed,
+                "Schedule text should be visible on Live Education page");
     }
 
 
