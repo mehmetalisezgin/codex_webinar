@@ -14,7 +14,7 @@ This project is designed as part of an interview task and demonstrates UI and AP
 ## Project Structure
 
 ```text
-xm-ui-api-automation-framework/
+codex_webinar/project/
 ├── .idea/                         # IntelliJ project settings
 ├── logs/                          # Log files (if applicable)
 ├── src/
