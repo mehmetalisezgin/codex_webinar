@@ -7,7 +7,6 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.CommonPageClass;
 import pages.EconomicCalendarPage;
 import pages.HomePage;
 import utils.DateTimeUtils;
@@ -19,23 +18,15 @@ public class EconomicCalendarTests extends BaseTestClass {
 
     private WebDriver driver;
     private final String sTestName = this.getClass().getName();
-    HomePage homePage = new HomePage(driver);
-    EconomicCalendarPage economicCalendarPage = new EconomicCalendarPage(driver);
+    HomePage homePage;
+    EconomicCalendarPage economicCalendarPage;
     JavaScriptUtils javaScriptUtils = new JavaScriptUtils();
 
     @BeforeMethod
     public void setUp(ITestContext testContext) {
-        LoggerUtils.log.debug("[SETUP TEST] " + sTestName);
-        driver = setUpMaxResolution();
-        testContext.setAttribute(sTestName + ".drivers", new WebDriver[]{driver});
-        CommonPageClass commonPageClass = new CommonPageClass(driver);
-        commonPageClass.isExpectedTitleDisplayed("Access Global Financial Markets and Start Trading | XM");
-        homePage.verifyHomePage();
-        DateTimeUtils.wait(Time.TIME_DEMONSTRATION);
-        homePage.clickAcceptCookies();
-        DateTimeUtils.wait(Time.TIME_DEMONSTRATION);
-        homePage.clickDiscoverMenu();
-        DateTimeUtils.wait(Time.TIME_DEMONSTRATION);
+        driver = prepareHomePage(testContext, sTestName);
+        homePage = new HomePage(driver);
+        economicCalendarPage = new EconomicCalendarPage(driver);
         homePage.clickEconomicCalendar();
         DateTimeUtils.wait(Time.TIME_DEMONSTRATION);
         economicCalendarPage.verifyEconomicCalendarPage();
